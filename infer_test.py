@@ -29,7 +29,7 @@ label_list = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B',
 print(len(label_list))
 
 DEFAULT_FUNCTION_KEY = "serving_default"
-loaded = tf.saved_model.load('.\\model\\')
+loaded = tf.saved_model.load('./model/')
 
 network = loaded.signatures[DEFAULT_FUNCTION_KEY]
 print(list(loaded.signatures.keys()))
@@ -37,10 +37,12 @@ print(list(loaded.signatures.keys()))
 print('加载 weights 成功')
 
 # license_plate = cv2.imread('E:\\code\\tf\\proj\\car_num\\yuA.png')
-license_plate = cv2.imread('E:\\code\\tf\\proj\\car_num\\num_plate.png')
+# license_plate = cv2.imread('E:\\code\\tf\\proj\\car_num\\num_plate.png')
+license_plate = cv2.imread('./luN.png')
 gray_plate = cv2.cvtColor(license_plate, cv2.COLOR_RGBA2GRAY)
 ret, binary_plate = cv2.threshold(gray_plate, 175, 255, cv2.THRESH_BINARY)
 cv2.imshow('1', binary_plate)
+
 print(binary_plate.shape)
 cv2.waitKey(0)
 result = []
@@ -73,7 +75,8 @@ for i in range(8):
     ndarray = cv2.resize(ndarray, (20, 20))
     cv2.imwrite('./' + str(i) + '.png', ndarray)
 
-path = 'E:\\code\\tf\\proj\\car_num\\0.png'
+# path = 'E:\\code\\tf\\proj\\car_num\\0.png'
+path = './0.png'
 
 test_image = plt.imread(path)
 image = tf.io.read_file(path)
